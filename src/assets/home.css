@@ -1,0 +1,237 @@
+.bg-blue {
+    background: rgba(93, 203, 198, 0.2);
+    padding: 20px 0;
+}
+.align-center{
+    align-items: center;
+    justify-content: center;
+}
+
+.top-banner .content h3 {
+    margin: 0;
+    letter-spacing: 9px;
+    text-transform: uppercase;
+    font-weight: 400;
+    color: #0b0c15;
+    margin-bottom: -20px;
+}
+.main-header .navbar {
+    background-color: #fff !important;
+    border-radius: 14px;
+    box-shadow: 0 10px 30px rgba(11, 12, 21, 0.06);
+    padding: 26px 30px;
+}
+.banner h2{
+    margin: 0;
+    letter-spacing: 9px;
+    text-transform: uppercase;
+    font-weight: 400;
+    color: #0b0c15;
+    margin-bottom: -20px
+}
+.banner h3 {
+    text-transform: uppercase;
+    font-size: 60px;
+    line-height: 60px;
+    padding-top: 20px;
+}
+.btn{
+    font-family: Poppins;
+    font-size: 24px;
+    font-weight: 700;
+    color: #fff;
+    display: inline-block;
+    padding: 10px 40px;
+    background-color: #5dcbc6;
+    text-transform: capitalize;
+    -webkit-transition: 0.5s ease-in-out;
+    transition: 0.5s ease-in-out;
+    border-radius: 16px;
+    border: none;
+    text-align: center;
+    z-index: 999;
+    height: 70px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+.btn-primary{
+    color: #fff;
+    background: #5dcbc6;
+}
+
+.btn-modal{
+    font-size: 16px;
+    line-height: 20px;
+    height: 45px;
+}
+.form-label {
+    margin-bottom: 0 !important;
+}
+.login-form.user form {
+    width: calc(98% - 270px);
+    margin: 100px 20px 0 auto;
+    padding: 20px 30px 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-sizing: border-box;
+    background-color: #ffffff;
+}
+.form-select{
+    width: 100%;
+    border: 1px solid #ddd;
+    padding: 5px 10px;
+    height: 45px;
+    margin: 4px 0px 4px;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 17px;
+}
+h5.text-left{
+    text-align: left;
+    font-weight: bold;
+    padding: 25px 0 10px;
+}
+/* slider css */
+.phone_slider{
+    width: 300px;
+    height: 300px;
+    padding: 0 20px;
+}
+.phone_slider img{
+    width: 100%;
+    height: auto;
+}
+
+.aboutus{
+    padding: 100px 0;
+}
+.aboutus .about-us-content h2{
+    font-size: 60px;
+    font-weight: bold;
+
+    padding-bottom: 60px;
+
+}
+.aboutus .about-us-content{
+
+}
+.about-us-content h3{
+    font-size: 35px;
+    padding-bottom: 10px;
+    text-decoration: underline;
+    text-align: left;
+}
+.about-us-content p{
+    color: rgba(11, 12, 21, 0.5);
+    font-size: 20px;
+    line-height: 34px;
+    text-align: left;
+    padding-bottom: 20px;
+}
+.projects-stats {
+    width: calc(100% - 270px);
+    margin-top: 100px;
+    padding: 22px;
+    background-color: #FFFFFF;
+    margin-bottom: 22px;
+    margin: 100px 0 0 auto;
+}
+.projects-stats .dynamic {
+    background: #FFF8E5;
+    border-radius: 8px;
+    padding: 22.5px 18px;
+    display: flex;
+    align-items: center;
+}
+.projects-stats .dynamic .ring {
+    width: 51px;
+    height: 51px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 8px;
+}
+.projects-stats .dynamic.notification .ring {
+    background: linear-gradient(180deg, #FFBF08 -50%, #FFEA5F 182.35%);
+}
+.projects-stats .dynamic h5 {
+    /* font-family: Inter; */
+    font-size: 15px;
+    font-weight: 700;
+    line-height: 19px;
+    letter-spacing: 0.03em;
+    color: #192434;
+    text-align: left;
+}
+.projects-stats .dynamic.notification p {
+    color: #FFCA1E;
+}
+.projects-stats .dynamic p {
+    font-size: 10px;
+    font-weight: 600;
+    line-height: 12.1px;
+}
+.projects-stats .dynamic.project {
+    background: #E4F8EB;
+}
+.projects-stats .dynamic.project .ring {
+    background: linear-gradient(180deg, #048A42 -50%, #50E680 182.35%);
+}
+
+.projects-stats .dynamic.client {
+    background: #EBE8FE;
+}
+.projects-stats .dynamic.client .ring {
+    background: linear-gradient(180deg, #3F24F7 -50%, #8E7FFE 182.35%);
+}
+.projects-stats .dynamic.create-new {
+    background: #3C21F7;
+}
+.projects-stats .dynamic.create-new .ring {
+    background: #FFFFFF;
+}
+.projects-stats .dynamic.create-new h5 {
+    color: #fff;
+}
+.projects-stats .dynamic.create-new p {
+    color: #fff;
+}
+.patient-managment{
+    margin-top: 25px;
+    padding: 22px 25px;
+    background: #3C21F7;
+    overflow: hidden;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    text-align: start;
+}
+.patient-managment h4,p{
+    color: #FFFFFF;
+}
+Button.pri_btn{
+    height: auto;
+    background-color: #fff;
+    color:#3C21F7 ;
+    font-weight: bold;
+    padding: 5px 15px;
+}
+.projects-stats .dynamic.project p {
+    color: #00BC39;
+}
+.projects-stats .dynamic.client p {
+    color: #9687FF;
+}
+.table_inner{
+    width: calc(100% - 270px);
+
+    padding: 22px;
+    /* background-color: #80bdf6; */
+    margin-bottom: 22px;
+    margin: 100px 0 0 auto;
+}
+.table_inner_table{
+    background-color: #80bdf6;
+    margin-top: 20px;
+}
