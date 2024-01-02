@@ -24,7 +24,7 @@
     display: flex;
     margin-top: 20px;
     align-items: center;
-    width: 82%;
+    width: 100%;
     margin-left: auto;
 }
 .wrapper .main form{
@@ -32,8 +32,8 @@
 }
 
 .wrapper .form-container{
-    width: 500px;
-    height: 340px;
+    width: 900px;
+    height: auto;
     background-color: #e4e4e4;
     margin: 20px auto;
     padding: 20px;
@@ -59,4 +59,15 @@
 
 tbody{
     margin-top: 25px;
+}
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
 }

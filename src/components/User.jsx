@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import axios from "axios";
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup'; // Import yupResolver
 import * as yup from 'yup';
@@ -7,6 +8,8 @@ import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 import '../../src/assets/home.css'
+import { jwtDecode } from "jwt-decode";
+// const jwt = require('jsonwebtoken');
 
 
 
@@ -32,40 +35,75 @@ function User() {
             .string()
             .required('Email is Required')
             .matches(/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/, 'Invalid Email Format'),
-        password: yup
+            username: yup
             .string()
-            .required('Password is required'),
-        confirmPassword: yup
-            .string().oneOf([yup.ref('password'), null], 'Passwords must match'),
+            .required('username is required'),
+
     });
 
     // They are part of the schema, form management and validation logic for Login field
-    const { register, handleSubmit, formState: { errors } } = useForm({
+    const { register, handleSubmit, setValue, formState: { errors } } = useForm({
         resolver: yupResolver(schema), // Use yupResolver for schema validation
     });
-    //   confirm password match function
-    // const [confirmPassword, setConfirmPassword] = useState('');
+    const [apiData, setApiData] = useState([]);
+    const userId = localStorage.getItem('userId');
 
-    // const handleConfirmPasswordChange = (e) => {
-    //     setConfirmPassword(e.target.value);
-    // };
     /**
         * handle onSubmit will be called when the form is submitted
         *
         * Author:
         * Date: October 26, 2023
         */
-    const onSubmit = (data) => {
-        console.log('Form Data:', data);
+    const update_data =async () => {
+        try{
+            const token = localStorage.getItem("token");
+            const decoded = jwtDecode(token);
+            const response = await axios.put(`http://localhost:8082/profile/${decoded.userId}`);
+            const userProfile = response?.data;
+            setApiData(userProfile);
+            setValue('username', response.data.username || '');
+            setValue('email', response.data.email || '');
+            console.log("User Profiless:", userProfile);
+        } catch(error){
+            console.error("Error fetching data from the APIs  :", error);
+        }
 
     };
+
+
+    const addUser = ()=>{
+        update_data();
+    };
+
+    // get api from user-info and fetch into into two fields name and email fields.
+
+    useEffect (()=>{
+        const fetchData = async () => {
+            try {
+              const responses = await axios.get(`http://localhost:8082/profile/${userId}`);
+              setApiData(responses.data);
+              // Log the API response in the console
+              console.log("API Responses  :", responses.data);
+            } catch (error) {
+              console.error("Error fetching data from the APIs  :", error);
+            }
+          };
+          fetchData();
+    },[userId]);
+
+    useEffect(() => {
+        // Set initial values for the form inputs based on the API data
+        setValue('username', apiData.username || ''); // Replace 'email' with the actual field name
+        setValue('email', apiData.email || ''); // Replace 'password' with the actual field name
+        // Add more setValue calls for other fields...
+
+      }, [apiData, setValue]);
 
     return (
         <div className="login-form user">
             <div className='login-form-inner'>
-                <form onSubmit={handleSubmit(onSubmit)} autoComplete="off">
+                <form autoComplete="off">
                     <h2>User Detail</h2>
-                    {/*  */}
                     <div className="col-md-12 border-right">
           <div className="d-flex flex-column align-items-center text-center p-3 ">
             <img
@@ -74,8 +112,8 @@ function User() {
               src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg"
               alt="User Avatar"
             />
-            <span className="font-weight-bold">Ammad baber</span>
-            <span className="text-black-50">ammad@mail.com.my</span>
+            <h6 className="font-weight-bold">{apiData.username}</h6>
+            <span className="text-black-50">{apiData.email}</span>
             <span> </span>
           </div>
         </div>
@@ -88,13 +126,15 @@ function User() {
                             <Col>
                             <Form.Label htmlFor="basic-url">First Name</Form.Label>
                                 <input
-                                type="name"
+                                type="text"
+                                {...register('username')}
+                                 defaultValue={apiData?.username || ''}
                                 placeholder="First Name"/>
                             </Col>
                             <Col>
                             <Form.Label htmlFor="basic-url">Last Name</Form.Label>
                             <input
-                                type="name"
+                                type="text"
                                 placeholder="Last Name"/>
                             </Col>
                         </Row>
@@ -123,6 +163,8 @@ function User() {
                             <Form.Label htmlFor="basic-url">Email</Form.Label>
                                 <input
                                 type="email"
+                                {...register('email')}
+                                defaultValue={apiData.email || ''}
                                 placeholder="Email"/>
                             </Col>
                             <Col>
@@ -172,7 +214,7 @@ function User() {
                             </Col>
                         </Row>
                     </Container>
-                    <button className='success' type="submit">Save Changes</button>
+                    <button className='success' onClick={addUser} type='button'>Save Changes</button>
                     {/* <div className='remember_me'>
                         <span className="forget-psw">
                             <Link to="/login">

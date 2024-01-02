@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react'
+import axios from "axios";
 import { useForm } from 'react-hook-form';
+import { ToastContainer, toast } from 'react-toastify';
 import { yupResolver } from '@hookform/resolvers/yup'; // Import yupResolver
 import * as yup from 'yup';
 import { Link, useNavigate } from 'react-router-dom';
-
-
-
+import "react-toastify/dist/ReactToastify.css";
 
 /**
  * Signup Component
@@ -23,7 +23,11 @@ function Signup() {
       * Date: October 26, 2023
       */
     const schema = yup.object().shape({
-
+        username:yup
+            .string()
+            .required('Username is Required')
+            .min(3, 'Username Must be at least 3 characters')
+            .max(20, 'Username Must be less than 20 characters'),
         email: yup
             .string()
             .required('Email is Required')
@@ -36,15 +40,10 @@ function Signup() {
     });
 
     // They are part of the schema, form management and validation logic for Login field
-    const { register, handleSubmit, formState: { errors } } = useForm({
+    const { register, handleSubmit,reset, formState: { errors } } = useForm({
         resolver: yupResolver(schema), // Use yupResolver for schema validation
     });
-    //   confirm password match function
-    // const [confirmPassword, setConfirmPassword] = useState('');
 
-    // const handleConfirmPasswordChange = (e) => {
-    //     setConfirmPassword(e.target.value);
-    // };
     /**
         * handle onSubmit will be called when the form is submitted
         *
@@ -53,11 +52,30 @@ function Signup() {
         */
 
     const navigate = useNavigate();
-    const onSubmit = (data) => {
-      navigate('/login');
-      console.log(data);
-    };
 
+    const onSubmit =async (data) => {
+
+         console.log("first-data",data);
+        try {
+        const response=await axios.post("http://localhost:8082/signup",data)
+        console.log("response-data", response.data);
+        if(response.data.message === "User already exists"){
+            toast.warning("User already exist", {
+                autoClose: 1500
+              });
+            if(response.status === 200){
+              reset()
+            }
+            else{
+                // navigate('/login');
+            }
+        }
+        else{
+            navigate('/login');
+        }
+        } catch (error) {
+        }
+      };
 
     return (
         <div className="login-form">
@@ -66,6 +84,13 @@ function Signup() {
                     <h2>Signup Form</h2>
 
                     {/* for Email */}
+                    <input
+                        type="text"
+                        placeholder="Enter User name"
+                        {...register('username')}
+                    />
+                    {errors.username && <span className='eroor'>{errors.username.message}</span>}
+
 
                     <input
                         type="email"
@@ -86,8 +111,6 @@ function Signup() {
                         placeholder="Enter Same password"
                         name="password"
                         {...register('confirmPassword')}
-                        // value={confirmPassword}
-                        // onChange={handleConfirmPasswordChange}
                     />
                     {errors.confirmPassword && <span className='eroor'>{errors.confirmPassword.message}</span>}
 
@@ -113,6 +136,7 @@ function Signup() {
                     </div>
                 </form>
             </div>
+            {/* <ToastContainer /> */}
         </div>
     );
 }

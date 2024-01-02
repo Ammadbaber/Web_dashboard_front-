@@ -1,5 +1,6 @@
 
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
+import axios from "axios";
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -11,10 +12,28 @@ import new_icon from '../../src/assets/images/Paper Plus.png'
 
 import '../../src/assets/home.css'
 
-const Layout = () => {
-  const [sharedState, setSharedState] = useState();
-  const dataLength=JSON.parse(localStorage.getItem("books"))
-  console.log(dataLength.length)
+const Main_dashboard = () => {
+  const [apiData, setApiData] = useState({});
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const responses = await axios.get("http://localhost:8082/dashboard");
+        setApiData(responses.data);
+
+        // Log the API response in the console
+        console.log("API dashboard responce:", responses.data);
+      } catch (error) {
+        console.error("Error fetching in data length :", error);
+      }
+    };
+
+    fetchData();
+  }, []);
+  console.log("apiData_lengthsss:", apiData);
+
+  // const dataLength=JSON.parse(localStorage.getItem("books"))
+  // console.log(dataLength.length)
   return (
     <div>
       <div className='projects-stats'>
@@ -30,7 +49,7 @@ const Layout = () => {
                   <h5>
                     NOTIFICATION
                   </h5>
-                  <p>{dataLength.length} Unread Notifications</p>
+                  <p>{apiData.users} Unread Notifications</p>
                 </div>
               </div>
             </Col>
@@ -97,4 +116,4 @@ const Layout = () => {
   )
 }
 
-export default Layout
+export default Main_dashboard;

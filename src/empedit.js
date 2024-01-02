@@ -9,43 +9,6 @@ export default function Empedit(){
     const[phone,phonechange] =useState("");
     const [ countries, setCountries ] = useState([]);
     const navigation = useNavigate();
-    // useEffect(() => {
-    //     try {
-    //       fetch('https://jsonplaceholder.typicode.com/' + empid)
-    //         .then((res) => {
-    //           if (!res.ok) {
-    //             throw new Error('Network response was not ok');
-    //           }
-    //           return res.json();
-    //         })
-    //         .then((res) => {
-    //           idchange(res.id);
-    //           namechange(res.name);
-    //           emailchange(res.email);
-    //           phonechange(res.phone);
-    //         })
-    //         .catch((err) => {
-    //           console.error(err);
-    //         });
-    //     } catch (error) {
-    //       console.error('An error occurred while fetching data:', error);
-    //     }
-    //   }, []);
-        // const handleSubmit=(e)=>{
-        // e.preventDefault();
-        // const empdata = {id,name,email,phone}
-
-        //     fetch('https://jsonplaceholder.typicode.com/'+empid,{
-        //     method:"PUT",
-        //     headers:{"content-type":"application/json"},
-        //     body:JSON.stringify(empdata)
-        //     }).then((res)=>{
-        //         alert('Record inserted');
-        //         navigation('/');
-        //     }).catch((err)=>{
-        //         console.log(err);
-        //     })
-        //    }
 
         useEffect(() => {
             const fetchData = async () => {

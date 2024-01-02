@@ -33,18 +33,23 @@ const Sidebar = () => {
               <CDBSidebarMenuItem icon="columns"><Link to="/blogs">Blogs</Link></CDBSidebarMenuItem>
             </NavLink>
             <NavLink exact to="/tables" activeClassName="activeClicked">
-              <CDBSidebarMenuItem icon="table">
-              <Link to="/tables">Tables</Link>
+              <CDBSidebarMenuItem icon="sticky-note">
+              <Link to="/tables">User Tables</Link>
                 </CDBSidebarMenuItem>
             </NavLink>
 
             <NavLink exact to="/create-data" activeClassName="activeClicked">
               <CDBSidebarMenuItem icon="table">
-              <Link to="/create-data">Create Data</Link>
+              <Link to="/create-data">User Create</Link>
+                </CDBSidebarMenuItem>
+            </NavLink>
+            <NavLink exact to="/user_feedback" activeClassName="activeClicked">
+              <CDBSidebarMenuItem icon="chart-line">
+              <Link to="/user_feedback">Feedback</Link>
                 </CDBSidebarMenuItem>
             </NavLink>
 
-            <CDBSidebarMenuItem icon="exclamation-circle" onClick={handleShow}>Sign Out</CDBSidebarMenuItem>
+            {/* <CDBSidebarMenuItem icon="exclamation-circle" onClick={handleShow}>Sign Out</CDBSidebarMenuItem> */}
             {/* <NavLink exact to="/" target="_blank" activeClassName="activeClicked">
 
             </NavLink> */}
@@ -53,7 +58,7 @@ const Sidebar = () => {
 
 
         {/* logout modal */}
-        <Modal show={show} onHide={handleClose}>
+        {/* <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
         </Modal.Header>
         <Modal.Body>Do you really wish to leave and logout? </Modal.Body>
@@ -67,7 +72,7 @@ const Sidebar = () => {
             No, Cancel
           </Button>
         </Modal.Footer>
-        </Modal>
+        </Modal> */}
 
         <CDBSidebarFooter style={{ textAlign: 'center' }}>
           <div

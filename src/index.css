@@ -32,3 +32,25 @@ th{
   padding: 5px 10px;
   background-color:rgb(206, 229, 236)
 }
+section.contact-us{
+  padding: 20px 0;
+  background-color: #B0C4DE;
+}
+.contact-us h1{
+  font-size: 60px;
+  font-weight: bold;
+  padding-bottom: 20px;
+}
+
+form.contact_us_form{
+  padding: 30px;
+  max-width: 50%;
+    border: 1px solid;
+    margin: 0 auto;
+}
+form.contact_us_form h1{
+
+}
+.user-data-content{
+  margin-top: 100px;
+}

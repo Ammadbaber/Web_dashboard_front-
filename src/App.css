@@ -264,6 +264,14 @@ width: 100%;
   margin-left: auto;
   text-align: center;
 }
+label {
+  display: block;
+}
+label.text-left{
+  display: block;
+  text-align: left;
+  font-weight: bold;
+}
 
 
 
